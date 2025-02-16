@@ -12,87 +12,102 @@
         <h2 class="subtitle">LC Economics Society Journal</h2>
     </header>
 
+    <!-- Navigation Menu -->
     <nav class="nav">
-        <a href="#recent" class="nav-link">Most Recent Issue</a>
-        <a href="#past" class="nav-link">Past Issues</a>
-        <a href="#aging-world" class="nav-link">Aging World Series</a>
-        <a href="#about" class="nav-link">About Us</a>
-        <a href="#contact" class="nav-link">Contact Us</a>
+        <a href="#" class="nav-link" data-target="recent">Most Recent Issue</a>
+        <a href="#" class="nav-link" data-target="past">Past Issues</a>
+        <a href="#" class="nav-link" data-target="aging-world">Aging World Series</a>
+        <a href="#" class="nav-link" data-target="about">About Us</a>
+        <a href="#" class="nav-link" data-target="contact">Contact Us</a>
     </nav>
 
     <main class="main-content">
+        <!-- Most Recent Issue -->
         <section id="recent" class="section">
             <h2 class="section-title">Most Recent Issue</h2>
-            <div class="current-issue">
-                <div class="issue-preview">
-                    <h3>Spring 2025 Edition</h3>
-                    <p class="issue-description">
-                        Featuring research on emerging market trends, policy analysis, 
-                        and in-depth economic commentary from LC Economics Society members.
-                    </p>
-                    <a href="#" class="read-button">Read Current Issue</a>
-                </div>
+            <div class="articles">
+                <article class="article">
+                    <img src="article1.jpg" alt="Article 1">
+                    <h3>How AI is Reshaping Global Trade</h3>
+                    <p>Examining the intersection of artificial intelligence and international commerce...</p>
+                    <a href="#">Read More</a>
+                </article>
+                <article class="article">
+                    <img src="article2.jpg" alt="Article 2">
+                    <h3>The 2025 Market Outlook</h3>
+                    <p>An in-depth forecast on financial trends for the upcoming year...</p>
+                    <a href="#">Read More</a>
+                </article>
             </div>
         </section>
 
+        <!-- Past Issues with Sub-Tabs -->
         <section id="past" class="section hidden">
             <h2 class="section-title">Past Issues</h2>
-            <div class="past-issues-grid">
-                <div class="issue-card">
-                    <h3>Winter 2024</h3>
-                    <p>Special Edition on Global Financial Markets</p>
-                    <a href="#" class="view-issue">View Issue</a>
-                </div>
-                <div class="issue-card">
-                    <h3>Fall 2024</h3>
-                    <p>Focus on Sustainable Economics</p>
-                    <a href="#" class="view-issue">View Issue</a>
-                </div>
-                <!-- Add more past issues as needed -->
+            <nav class="sub-nav">
+                <a href="#" class="sub-link" data-target="winter-2024">Winter 2024</a>
+                <a href="#" class="sub-link" data-target="fall-2024">Fall 2024</a>
+            </nav>
+            <div id="winter-2024" class="past-issue hidden">
+                <h3>Winter 2024</h3>
+                <article class="article">
+                    <img src="winter1.jpg" alt="Winter 2024 Article">
+                    <h3>The Rise of Digital Currencies</h3>
+                    <p>Exploring the future of digital assets and monetary policy...</p>
+                    <a href="#">Read More</a>
+                </article>
+            </div>
+            <div id="fall-2024" class="past-issue hidden">
+                <h3>Fall 2024</h3>
+                <article class="article">
+                    <img src="fall1.jpg" alt="Fall 2024 Article">
+                    <h3>Sustainable Economics: The Next Frontier</h3>
+                    <p>How green investments are shaping the future...</p>
+                    <a href="#">Read More</a>
+                </article>
             </div>
         </section>
 
+        <!-- Aging World Series with Interactive Map -->
         <section id="aging-world" class="section hidden">
             <h2 class="section-title">The Aging World Series</h2>
-            <div class="series-content">
-                <p class="series-description">
-                    An ongoing research project examining the economic implications 
-                    of demographic shifts in developed nations.
-                </p>
-                <div class="articles-list">
-                    <!-- Add series articles here -->
-                </div>
+            <p>Click on a country to read about its demographic trends:</p>
+            <div id="map-container">
+                <img src="world-map.png" alt="World Map" usemap="#worldmap">
+                <map name="worldmap">
+                    <area shape="rect" coords="50,50,100,100" alt="USA" href="#" data-target="usa">
+                    <area shape="rect" coords="150,50,200,100" alt="Japan" href="#" data-target="japan">
+                    <area shape="rect" coords="250,50,300,100" alt="Germany" href="#" data-target="germany">
+                </map>
+            </div>
+            <div id="country-article">
+                <h3 id="country-title"></h3>
+                <p id="country-content"></p>
             </div>
         </section>
 
+        <!-- About Us -->
         <section id="about" class="section hidden">
             <h2 class="section-title">About Us</h2>
-            <div class="about-content">
-                <p>
-                    The LC Economics Society is dedicated to fostering economic discourse 
-                    and research among students. Our journal, The Economic Insights, 
-                    serves as a platform for sharing student research, analysis, and 
-                    commentary on contemporary economic issues.
-                </p>
-            </div>
+            <p>The LC Economics Society fosters economic discourse and research...</p>
         </section>
 
+        <!-- Contact -->
         <section id="contact" class="section hidden">
             <h2 class="section-title">Contact Us</h2>
-            <div class="contact-content">
-                <p>Get in touch with the LC Economics Society editorial team:</p>
-                <form class="contact-form">
-                    <input type="text" placeholder="Name" required>
-                    <input type="email" placeholder="Email" required>
-                    <textarea placeholder="Message" required></textarea>
-                    <button type="submit" class="submit-button">Send Message</button>
-                </form>
-            </div>
+            <form>
+                <input type="text" placeholder="Name" required>
+                <input type="email" placeholder="Email" required>
+                <textarea placeholder="Message" required></textarea>
+                <button type="submit">Send Message</button>
+            </form>
         </section>
     </main>
 
     <footer class="footer">
         <p>&copy; 2025 LC Economics Society. All rights reserved.</p>
     </footer>
+
+    <script src="script.js"></script>
 </body>
 </html>
