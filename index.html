@@ -4,7 +4,161 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>The Economic Insights - LC Economics Society</title>
-    <link rel="stylesheet" href="styles.css">
+    <style>
+        :root {
+            --primary-color: #900028; /* Fordham Maroon */
+            --text-color: #333;
+            --background-color: #ffffff;
+            --border-color: #e0e0e0;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Times New Roman', serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background: var(--background-color);
+        }
+
+        .header {
+            background: var(--primary-color);
+            color: white;
+            padding: 2rem;
+            text-align: center;
+        }
+
+        .site-title {
+            font-size: 3rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .subtitle {
+            font-size: 1.5rem;
+            font-weight: normal;
+        }
+
+        .nav {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            padding: 1rem;
+            background: white;
+            border-bottom: 2px solid var(--primary-color);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .nav-link {
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.1rem;
+            padding: 0.5rem 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .nav-link:hover {
+            background: var(--primary-color);
+            color: white;
+            border-radius: 4px;
+        }
+
+        .main-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .section {
+            margin-bottom: 3rem;
+        }
+
+        .section-title {
+            color: var(--primary-color);
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            border-bottom: 2px solid var(--primary-color);
+            padding-bottom: 0.5rem;
+        }
+
+        .articles {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .article {
+            background: white;
+            padding: 1rem;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .article:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+
+        .article img {
+            width: 100%;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+        }
+
+        .article h3 {
+            font-size: 1.4rem;
+            margin-bottom: 0.5rem;
+            color: var(--primary-color);
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .footer {
+            background: var(--primary-color);
+            color: white;
+            text-align: center;
+            padding: 1rem;
+            margin-top: 2rem;
+        }
+
+        .uploaded-content {
+            margin-top: 1rem;
+            padding: 1rem;
+            background-color: #f4f4f4;
+            border-radius: 8px;
+        }
+
+        .uploaded-content a {
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        @media (max-width: 768px) {
+            .nav {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+
+            .nav-link {
+                width: 100%;
+                text-align: center;
+            }
+
+            .articles {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
 </head>
 <body>
     <header class="header">
@@ -12,125 +166,55 @@
         <h2 class="subtitle">LC Economics Society Journal</h2>
     </header>
 
-    <!-- Navigation -->
     <nav class="nav">
-        <a href="#" class="nav-link" data-target="recent">Most Recent Issue</a>
-        <a href="#" class="nav-link" data-target="past">Past Issues</a>
-        <a href="#" class="nav-link" data-target="aging-world">Aging World Series</a>
-        <a href="#" class="nav-link" data-target="about">About Us</a>
-        <a href="#" class="nav-link" data-target="contact">Contact Us</a>
-        <a href="/admin/login" class="nav-link">Admin Login</a>
+        <a href="#" class="nav-link" data-section="recent">Most Recent Issue</a>
+        <a href="#" class="nav-link" data-section="past">Past Issues</a>
+        <a href="#" class="nav-link" data-section="aging-world">Aging World Series</a>
+        <a href="#" class="nav-link" data-section="about">About Us</a>
+        <a href="#" class="nav-link" data-section="contact">Contact</a>
     </nav>
 
     <main class="main-content">
-        <!-- Most Recent Issue -->
         <section id="recent" class="section">
             <h2 class="section-title">Most Recent Issue</h2>
-            <div class="current-issue">
-                <div class="issue-preview">
-                    <h3>Spring 2025 Edition</h3>
-                    <p class="issue-description">
-                        Featuring research on emerging market trends, policy analysis, 
-                        and in-depth economic commentary from LC Economics Society members.
-                    </p>
-                    <a href="#" class="read-button">Read Current Issue</a>
-                </div>
-            </div>
-            <div class="articles">
-                <article class="article">
-                    <img src="article1.jpg" alt="Article 1">
-                    <h3>How AI is Reshaping Global Trade</h3>
-                    <p>Examining the intersection of artificial intelligence and international commerce...</p>
-                    <a href="#">Read More</a>
-                </article>
-                <article class="article">
-                    <img src="article2.jpg" alt="Article 2">
-                    <h3>The 2025 Market Outlook</h3>
-                    <p>An in-depth forecast on financial trends for the upcoming year...</p>
-                    <a href="#">Read More</a>
-                </article>
-                <!-- Dynamically loaded admin content will be inserted here -->
-                <div id="recent-admin-content">
-                    <!-- Placeholder for dynamically loaded PDFs or content -->
-                </div>
+            <div id="recent-content" class="articles">
+                <!-- Dynamically loaded recent content -->
             </div>
         </section>
 
-        <!-- Past Issues -->
         <section id="past" class="section hidden">
             <h2 class="section-title">Past Issues</h2>
-            <nav class="sub-nav">
-                <a href="#" class="sub-link" data-target="winter-2024">Winter 2024</a>
-                <a href="#" class="sub-link" data-target="fall-2024">Fall 2024</a>
-            </nav>
-            <div id="winter-2024" class="past-issue hidden">
-                <h3>Winter 2024</h3>
-                <article class="article">
-                    <img src="winter1.jpg" alt="Winter 2024 Article">
-                    <h3>The Rise of Digital Currencies</h3>
-                    <p>Exploring the future of digital assets and monetary policy...</p>
-                    <a href="#">Read More</a>
-                </article>
-                <!-- Dynamically loaded admin content for winter 2024 -->
-                <div id="past-winter-admin-content">
-                    <!-- Placeholder for dynamically loaded PDFs or content -->
-                </div>
+            <div class="sub-nav">
+                <a href="#" class="sub-link" data-year="winter-2024">Winter 2024</a>
+                <a href="#" class="sub-link" data-year="fall-2024">Fall 2024</a>
             </div>
-            <div id="fall-2024" class="past-issue hidden">
-                <h3>Fall 2024</h3>
-                <article class="article">
-                    <img src="fall1.jpg" alt="Fall 2024 Article">
-                    <h3>Sustainable Economics: The Next Frontier</h3>
-                    <p>How green investments are shaping the future...</p>
-                    <a href="#">Read More</a>
-                </article>
-                <!-- Dynamically loaded admin content for fall 2024 -->
-                <div id="past-fall-admin-content">
-                    <!-- Placeholder for dynamically loaded PDFs or content -->
-                </div>
+            <div id="past-content" class="articles">
+                <!-- Dynamically loaded past content -->
             </div>
         </section>
 
-        <!-- Aging World Series -->
         <section id="aging-world" class="section hidden">
-            <h2 class="section-title">The Aging World Series</h2>
-            <p>Click on a country to read about its demographic trends:</p>
-            <div id="map-container">
-                <img src="world-map.png" alt="World Map" usemap="#worldmap">
-                <map name="worldmap">
-                    <area shape="rect" coords="50,50,100,100" alt="USA" href="#" data-target="usa">
-                    <area shape="rect" coords="150,50,200,100" alt="Japan" href="#" data-target="japan">
-                    <area shape="rect" coords="250,50,300,100" alt="Germany" href="#" data-target="germany">
-                </map>
-            </div>
-            <div id="country-article">
-                <h3 id="country-title"></h3>
-                <p id="country-content"></p>
-            </div>
-            <!-- Dynamically loaded admin content for aging world series -->
-            <div id="aging-world-admin-content">
-                <!-- Placeholder for dynamically loaded PDFs or content -->
+            <h2 class="section-title">Aging World Series</h2>
+            <div id="aging-world-content" class="articles">
+                <!-- Dynamically loaded aging world content -->
             </div>
         </section>
 
-        <!-- About Us -->
         <section id="about" class="section hidden">
             <h2 class="section-title">About Us</h2>
-            <p>The LC Economics Society fosters economic discourse and research...</p>
-            <!-- Dynamically loaded admin content for about section -->
-            <div id="about-admin-content">
-                <!-- Placeholder for dynamically loaded PDFs or content -->
+            <div id="about-content">
+                <p>The LC Economics Society fosters economic discourse and research...</p>
+                <!-- Dynamically loaded about content -->
             </div>
         </section>
 
-        <!-- Contact -->
         <section id="contact" class="section hidden">
             <h2 class="section-title">Contact Us</h2>
             <form class="contact-form">
                 <input type="text" placeholder="Name" required>
                 <input type="email" placeholder="Email" required>
                 <textarea placeholder="Message" required></textarea>
-                <button type="submit" class="submit-button">Send Message</button>
+                <button type="submit">Send Message</button>
             </form>
         </section>
     </main>
@@ -139,131 +223,57 @@
         <p>&copy; 2025 LC Economics Society. All rights reserved.</p>
     </footer>
 
-    <script src="script.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            // Select all navigation links
-            const navLinks = document.querySelectorAll('.nav-link');
-            
-            // Select all sections
             const sections = document.querySelectorAll('.section');
-            
-            // Handle navigation link clicks
+            const navLinks = document.querySelectorAll('.nav-link');
+
+            // Navigation handling
             navLinks.forEach(link => {
                 link.addEventListener('click', (e) => {
                     e.preventDefault();
-                    
-                    // Get the target section based on data-target attribute
-                    const targetSection = document.getElementById(link.getAttribute('data-target'));
+                    const sectionId = link.getAttribute('data-section');
                     
                     // Hide all sections
-                    sections.forEach(section => {
-                        section.classList.add('hidden');
-                    });
+                    sections.forEach(sec => sec.classList.add('hidden'));
                     
-                    // Show the target section
-                    targetSection.classList.remove('hidden');
+                    // Show selected section
+                    document.getElementById(sectionId).classList.remove('hidden');
                     
-                    // Handle sub-navigation for Past Issues
-                    if (link.getAttribute('data-target') === 'past') {
-                        setupPastIssuesNavigation();
-                    }
-                    
-                    // Handle Aging World Series map interaction
-                    if (link.getAttribute('data-target') === 'aging-world') {
-                        setupAgingWorldMap();
-                    }
+                    // Load content for the section
+                    loadSectionContent(sectionId);
                 });
             });
-            
-            // Setup Past Issues sub-navigation
-            function setupPastIssuesNavigation() {
-                const subLinks = document.querySelectorAll('.sub-link');
-                const pastIssues = document.querySelectorAll('.past-issue');
-                
-                subLinks.forEach(subLink => {
-                    subLink.addEventListener('click', (e) => {
-                        e.preventDefault();
-                        
-                        // Hide all past issues
-                        pastIssues.forEach(issue => {
-                            issue.classList.add('hidden');
-                        });
-                        
-                        // Show the selected past issue
-                        const targetIssue = document.getElementById(subLink.getAttribute('data-target'));
-                        targetIssue.classList.remove('hidden');
-                    });
-                });
-            }
-            
-            // Setup Aging World Series map interaction
-            function setupAgingWorldMap() {
-                const mapAreas = document.querySelectorAll('map area');
-                const countryTitle = document.getElementById('country-title');
-                const countryContent = document.getElementById('country-content');
-                
-                // Predefined country information
-                const countryInfo = {
-                    'usa': {
-                        title: 'United States: Aging Population Trends',
-                        content: 'The United States is experiencing a significant demographic shift with an aging population. By 2030, all baby boomers will be over 65, dramatically changing the workforce and healthcare landscape. Challenges include increased healthcare costs, social security strain, and the need for elder care infrastructure.'
-                    },
-                    'japan': {
-                        title: 'Japan: Global Leader in Demographic Aging',
-                        content: 'Japan has the world\'s oldest population, with over 28% of its citizens aged 65 or older. This unprecedented aging has led to innovative solutions in robotics, healthcare, and workforce integration for seniors. The country faces challenges in maintaining economic productivity and supporting an increasingly elderly population.'
-                    },
-                    'germany': {
-                        title: 'Germany: Navigating Demographic Challenges',
-                        content: 'Germany\'s population is rapidly aging, with significant implications for its economy and social systems. The country is addressing this through progressive immigration policies, investments in automation, and creating age-friendly work environments. The aging population presents both challenges in healthcare and opportunities for technological innovation.'
-                    }
-                };
-                
-                mapAreas.forEach(area => {
-                    area.addEventListener('click', (e) => {
-                        e.preventDefault();
-                        const country = area.getAttribute('data-target');
-                        
-                        if (countryInfo[country]) {
-                            countryTitle.textContent = countryInfo[country].title;
-                            countryContent.textContent = countryInfo[country].content;
-                        }
-                    });
-                });
-            }
-            
-            // Function to load admin-uploaded content
-            async function loadAdminContent() {
+
+            // Content loading function
+            async function loadSectionContent(section) {
                 try {
-                    const response = await fetch('/api/get-uploaded-content');
+                    // In a real GitHub Pages setup, you'd fetch from the content directory
+                    const response = await fetch(`/content/${section}/index.json`);
                     const contentList = await response.json();
 
-                    contentList.forEach(content => {
-                        const targetContainer = document.getElementById(`${content.section}-admin-content`);
-                        if (targetContainer) {
-                            const contentItem = document.createElement('div');
-                            contentItem.classList.add('admin-uploaded-content');
-                            contentItem.innerHTML = `
-                                <h4>${content.title}</h4>
-                                <a href="/uploads/${content.section}/${content.filename}" target="_blank">View PDF</a>
-                            `;
-                            targetContainer.appendChild(contentItem);
-                        }
+                    const contentContainer = document.getElementById(`${section}-content`);
+                    contentContainer.innerHTML = ''; // Clear existing content
+
+                    // Create content items
+                    contentList.forEach(item => {
+                        const contentDiv = document.createElement('div');
+                        contentDiv.classList.add('uploaded-content');
+                        contentDiv.innerHTML = `
+                            <h3>${item.title}</h3>
+                            <a href="/content/${section}/${item.filename}" target="_blank">
+                                View PDF
+                            </a>
+                        `;
+                        contentContainer.appendChild(contentDiv);
                     });
                 } catch (error) {
-                    console.error('Error loading admin content:', error);
+                    console.error(`Error loading ${section} content:`, error);
                 }
             }
 
-            // Load admin content on page load
-            loadAdminContent();
-            
-            // Initially hide all sections except the most recent issue
-            sections.forEach(section => {
-                if (section.id !== 'recent') {
-                    section.classList.add('hidden');
-                }
-            });
+            // Load recent content by default
+            loadSectionContent('recent');
         });
     </script>
 </body>
