@@ -19,6 +19,7 @@
         <a href="#" class="nav-link" data-target="aging-world">Aging World Series</a>
         <a href="#" class="nav-link" data-target="about">About Us</a>
         <a href="#" class="nav-link" data-target="contact">Contact Us</a>
+        <a href="/admin/login" class="nav-link">Admin Login</a>
     </nav>
 
     <main class="main-content">
@@ -48,6 +49,10 @@
                     <p>An in-depth forecast on financial trends for the upcoming year...</p>
                     <a href="#">Read More</a>
                 </article>
+                <!-- Dynamically loaded admin content will be inserted here -->
+                <div id="recent-admin-content">
+                    <!-- Placeholder for dynamically loaded PDFs or content -->
+                </div>
             </div>
         </section>
 
@@ -66,6 +71,10 @@
                     <p>Exploring the future of digital assets and monetary policy...</p>
                     <a href="#">Read More</a>
                 </article>
+                <!-- Dynamically loaded admin content for winter 2024 -->
+                <div id="past-winter-admin-content">
+                    <!-- Placeholder for dynamically loaded PDFs or content -->
+                </div>
             </div>
             <div id="fall-2024" class="past-issue hidden">
                 <h3>Fall 2024</h3>
@@ -75,6 +84,10 @@
                     <p>How green investments are shaping the future...</p>
                     <a href="#">Read More</a>
                 </article>
+                <!-- Dynamically loaded admin content for fall 2024 -->
+                <div id="past-fall-admin-content">
+                    <!-- Placeholder for dynamically loaded PDFs or content -->
+                </div>
             </div>
         </section>
 
@@ -94,12 +107,20 @@
                 <h3 id="country-title"></h3>
                 <p id="country-content"></p>
             </div>
+            <!-- Dynamically loaded admin content for aging world series -->
+            <div id="aging-world-admin-content">
+                <!-- Placeholder for dynamically loaded PDFs or content -->
+            </div>
         </section>
 
         <!-- About Us -->
         <section id="about" class="section hidden">
             <h2 class="section-title">About Us</h2>
             <p>The LC Economics Society fosters economic discourse and research...</p>
+            <!-- Dynamically loaded admin content for about section -->
+            <div id="about-admin-content">
+                <!-- Placeholder for dynamically loaded PDFs or content -->
+            </div>
         </section>
 
         <!-- Contact -->
@@ -119,5 +140,131 @@
     </footer>
 
     <script src="script.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Select all navigation links
+            const navLinks = document.querySelectorAll('.nav-link');
+            
+            // Select all sections
+            const sections = document.querySelectorAll('.section');
+            
+            // Handle navigation link clicks
+            navLinks.forEach(link => {
+                link.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    
+                    // Get the target section based on data-target attribute
+                    const targetSection = document.getElementById(link.getAttribute('data-target'));
+                    
+                    // Hide all sections
+                    sections.forEach(section => {
+                        section.classList.add('hidden');
+                    });
+                    
+                    // Show the target section
+                    targetSection.classList.remove('hidden');
+                    
+                    // Handle sub-navigation for Past Issues
+                    if (link.getAttribute('data-target') === 'past') {
+                        setupPastIssuesNavigation();
+                    }
+                    
+                    // Handle Aging World Series map interaction
+                    if (link.getAttribute('data-target') === 'aging-world') {
+                        setupAgingWorldMap();
+                    }
+                });
+            });
+            
+            // Setup Past Issues sub-navigation
+            function setupPastIssuesNavigation() {
+                const subLinks = document.querySelectorAll('.sub-link');
+                const pastIssues = document.querySelectorAll('.past-issue');
+                
+                subLinks.forEach(subLink => {
+                    subLink.addEventListener('click', (e) => {
+                        e.preventDefault();
+                        
+                        // Hide all past issues
+                        pastIssues.forEach(issue => {
+                            issue.classList.add('hidden');
+                        });
+                        
+                        // Show the selected past issue
+                        const targetIssue = document.getElementById(subLink.getAttribute('data-target'));
+                        targetIssue.classList.remove('hidden');
+                    });
+                });
+            }
+            
+            // Setup Aging World Series map interaction
+            function setupAgingWorldMap() {
+                const mapAreas = document.querySelectorAll('map area');
+                const countryTitle = document.getElementById('country-title');
+                const countryContent = document.getElementById('country-content');
+                
+                // Predefined country information
+                const countryInfo = {
+                    'usa': {
+                        title: 'United States: Aging Population Trends',
+                        content: 'The United States is experiencing a significant demographic shift with an aging population. By 2030, all baby boomers will be over 65, dramatically changing the workforce and healthcare landscape. Challenges include increased healthcare costs, social security strain, and the need for elder care infrastructure.'
+                    },
+                    'japan': {
+                        title: 'Japan: Global Leader in Demographic Aging',
+                        content: 'Japan has the world\'s oldest population, with over 28% of its citizens aged 65 or older. This unprecedented aging has led to innovative solutions in robotics, healthcare, and workforce integration for seniors. The country faces challenges in maintaining economic productivity and supporting an increasingly elderly population.'
+                    },
+                    'germany': {
+                        title: 'Germany: Navigating Demographic Challenges',
+                        content: 'Germany\'s population is rapidly aging, with significant implications for its economy and social systems. The country is addressing this through progressive immigration policies, investments in automation, and creating age-friendly work environments. The aging population presents both challenges in healthcare and opportunities for technological innovation.'
+                    }
+                };
+                
+                mapAreas.forEach(area => {
+                    area.addEventListener('click', (e) => {
+                        e.preventDefault();
+                        const country = area.getAttribute('data-target');
+                        
+                        if (countryInfo[country]) {
+                            countryTitle.textContent = countryInfo[country].title;
+                            countryContent.textContent = countryInfo[country].content;
+                        }
+                    });
+                });
+            }
+            
+            // Function to load admin-uploaded content
+            async function loadAdminContent() {
+                try {
+                    const response = await fetch('/api/get-uploaded-content');
+                    const contentList = await response.json();
+
+                    contentList.forEach(content => {
+                        const targetContainer = document.getElementById(`${content.section}-admin-content`);
+                        if (targetContainer) {
+                            const contentItem = document.createElement('div');
+                            contentItem.classList.add('admin-uploaded-content');
+                            contentItem.innerHTML = `
+                                <h4>${content.title}</h4>
+                                <a href="/uploads/${content.section}/${content.filename}" target="_blank">View PDF</a>
+                            `;
+                            targetContainer.appendChild(contentItem);
+                        }
+                    });
+                } catch (error) {
+                    console.error('Error loading admin content:', error);
+                }
+            }
+
+            // Load admin content on page load
+            loadAdminContent();
+            
+            // Initially hide all sections except the most recent issue
+            sections.forEach(section => {
+                if (section.id !== 'recent') {
+                    section.classList.add('hidden');
+                }
+            });
+        });
+    </script>
 </body>
 </html>
